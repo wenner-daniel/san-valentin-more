@@ -1,0 +1,303 @@
+#envelope {
+  margin: 150px;
+  position: relative;
+  width: 280px;
+  height: 180px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 150px;
+  background-color: #f9c5c8;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* TEXTO SAN VALENTÍN */
+.valentine-text {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  font-size: 26px;
+  font-weight: bold;
+  color: #a10000;
+  opacity: 0;
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  pointer-events: none;
+}
+
+/* cuando el sobre está abierto */
+#envelope.open ~ .valentine-text {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.front {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 3;
+}
+
+.flap {
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-bottom: 82px solid transparent;
+  border-top: 98px solid #ff3333;
+  transform-origin: top;
+  pointer-events: none;
+}
+
+.pocket {
+  border-left: 140px solid #ff9999;
+  border-right: 140px solid #ff9999;
+  border-bottom: 90px solid #fd8787;
+  border-top: 90px solid transparent;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.letter {
+  position: relative;
+  background-color: #f9c5c8;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 90%;
+  top: 5%;
+  border-radius: 6px;
+  box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
+}
+
+.letter:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 25%,
+    rgba(239, 215, 239, 0.7) 55%,
+    #eed7ef 100%
+  );
+}
+
+.words {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  height: 14%;
+  background-color: #fdb7ba;
+}
+
+.words.line1 {
+  top: 15%;
+  width: 20%;
+  height: 7%;
+}
+
+.words.line2 { top: 30%; }
+.words.line3 { top: 50%; }
+.words.line4 { top: 70%; }
+
+.open .flap {
+  transform: rotateX(180deg);
+  transition: transform 0.4s ease;
+  z-index: 1;
+}
+
+.close .flap {
+  transform: rotateX(0deg);
+  transition: transform 0.4s ease;
+  z-index: 5;
+}
+
+.close .letter {
+  transform: translateY(0);
+  transition: transform 0.4s ease;
+}
+
+.open .letter {
+  transform: translateY(-60px);
+  transition: transform 0.4s 0.6s ease;
+}
+
+.hearts {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.heart {
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+  pointer-events: none;
+}
+
+.heart:before,
+.heart:after {
+  position: absolute;
+  content: "";
+  width: 50px;
+  height: 80px;
+  background: #d00000;
+  border-radius: 50px 50px 0 0;
+}
+
+.heart:before {
+  left: 50px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+.close .heart {
+  opacity: 0;
+  animation: none;
+}
+
+.a1 {
+  left: 20%;
+  transform: scale(0.6);
+  animation: slideUp 4s linear forwards, sideSway 2s ease-in-out 4 alternate;
+  animation-delay: 0.7s;
+}
+
+.a2 {
+  left: 55%;
+  transform: scale(1);
+  animation: slideUp 5s linear forwards, sideSway 4s ease-in-out 2 alternate;
+  animation-delay: 0.7s;
+}
+
+.a3 {
+  left: 10%;
+  transform: scale(0.8);
+  animation: slideUp 7s linear forwards, sideSway 2s ease-in-out 6 alternate;
+  animation-delay: 0.7s;
+}
+
+@keyframes slideUp {
+  from { top: 0; }
+  to { top: -600px; }
+}
+
+@keyframes sideSway {
+  from { margin-left: 0; }
+  to { margin-left: 50px; }
+}
+
+body {
+  background-color: #f7d9da;
+}
+
+.envlope-wrapper{
+  position: relative;
+}
+
+/* Texto */
+.valentine-text{
+  white-space: nowrap;
+  position: absolute;
+  top: -20px;              /* 🔼 SUBE EL TEXTO */
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  font-size: 24px;
+  font-weight: bold;
+  color: #a10000;
+  opacity: 0;
+  z-index: 10;
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  pointer-events: none;
+  text-align: center;
+  width: 100%;
+}
+
+#typewriter::after{
+  content: "│";
+  margin-left: 4px;
+  animation: blink 0.8s infinite;
+}
+@keyframes blink{
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.valentine-text.done{
+  animation: pop 300ms ease;
+}
+@keyframes pop{
+  0%{ transform: translateX(-50%) scale(1); }
+  60%{ transform: translateX(-50%) scale(1.06); }
+  100%{ transform: translateX(-50%) scale(1); }
+}
+
+.valentine-text{
+  text-shadow: 0 2px 12px rgba(161,0,0,0.25);
+}
+
+body{
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35), transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.25), transparent 40%),
+    radial-gradient(circle at 40% 80%, rgba(255,255,255,0.22), transparent 35%),
+    #f7d9da;
+}
+
+
+/* Aparece cuando el sobre está abierto */
+#envelope.open ~ .valentine-text{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  transition-delay: 0.6s; /* para que salga justo cuando abre bonito */
+}
+
+.letter-message{
+  position: absolute;
+  opacity: 0.75;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  text-align: center;
+  font-size: 16px;
+  color: #8d4242;
+  z-index: 3;
+  font-weight: 600;
+}
+
+.letter:after{
+  z-index: 1;
+}
+
+.words{
+  z-index: 2;
+}
+
+.reset {
+  text-align: center;
+}
+
+.reset button {
+  font-weight: 800;
+  transition: all 0.1s linear;
+  background: transparent;
+  border: 2px solid #ff5757;
+  border-radius: 4px;
+  color: #ff5757;
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.reset button:hover {
+  background-color: #fc9d9d;
+  color: #a10000;
+}
